@@ -1,14 +1,28 @@
-import { PrismaClient } from '@prisma/client';
-import { DeepMockProxy, mockDeep, mockReset } from 'jest-mock-extended';
+import { PrismaClient, User } from '@prisma/client';
+import { ApolloServer } from 'apollo-server';
+import { DeepMockProxy, mockDeep } from 'jest-mock-extended';
+import 'reflect-metadata';
+import { createSchema } from '../src/graphql/schema';
 import { prisma } from '../src/services/prisma';
 
-jest.mock('../src/services/prisma', () => ({
-  __esModule: true,
-  default: mockDeep<PrismaClient>(),
-}));
+export async function createMocks() {
+  const mockedSchema = await createSchema();
 
-beforeEach(() => {
-  mockReset(prismaMock);
-});
+  const mockedServer = new ApolloServer({
+    schema: mockedSchema,
+    context: () => ({ prisma: prismaMock }),
+  });
 
-export const prismaMock = prisma as unknown as DeepMockProxy<PrismaClient>;
+  jest.mock('../src/services/prisma', () => ({
+    __esModule: true,
+    default: mockDeep<PrismaClient>(),
+  }));
+
+  const prismaMock = prisma as unknown as DeepMockProxy<PrismaClient>;
+
+  return { mockedServer, prismaMock };
+}
+
+export type PrismaMockType = DeepMockProxy<PrismaClient>;
+export type MockedServerType = ApolloServer;
+export type UserType = User;
