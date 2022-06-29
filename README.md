@@ -4,7 +4,7 @@ A nice project with a nice development
 
 ---
 
-## Requerimentos
+## Requerimentos 📓
 
 Para rodar o projeto, você irá precisar ter instalado:
 
@@ -12,7 +12,7 @@ Para rodar o projeto, você irá precisar ter instalado:
 2. Docker
 3. docker-compose
 
-## Instalação
+## Instalação 🔽
 
 ---
 
@@ -25,17 +25,17 @@ automatizado.
     $ // aguarde o log do backend pronto na porta 4000 e pode utilizar!
     $ // Por padrão, o backend roda na porta 4000 e o front na 3000!
 
-## Sobre o ambient de DEV
+## Sobre o ambient de DEV 🧑‍💻
 
 Por padrão, todos os containers rodam com a versão de build.
 Caso queira configurar para o ambiente de desenvolvimento, basta realizar estes passos:
 
-1. Comentar todo o serviço uncomplicate-app-service no arquivo `dockercompose.yml` da pasta `server`.
+1. Comentar todo o serviço uncomplicate-app-service no arquivo `dockercompose.yml`.
 
 2. Na pasta server, rodar:
 
 ```console
-  docker-compose up -d
+  docker-compose up
   npm install // ou yarn
   npm run dev // ou yarn dev
 ```
@@ -51,27 +51,51 @@ Caso queira configurar para o ambiente de desenvolvimento, basta realizar estes 
 
 5. Pronto! Pode aproveitar :))
 
-## Features bacanas
+## Testes 🧪
 
 ---
 
-### O Apollo Server (no back) tem cacheamento nativo de todas as requisições.
+Sim! Possuimos testes 🎆
 
-<br>
+1. Para rodar os testes, inicie os serviços (ou apenas o banco se preferir)
 
-### O backend tem um arquivo chamado `populate.js`, que automaticamente gera ao menos, 10 registros dentro da base.
+```console
+  docker-compose up
+```
 
-<br>
+2. Entre na pasta `server` execute:
 
-### O frontend tem a possibilidade de editar, excluir e criar.
+```console
+  npm run test // ou yarn test
+```
 
-<br>
+3. Pronto, os testes rodarão automaticamente!
 
-### Todos os resolvers foram gerados pelo prisma, pela forte integração com o GraphQL
+## Features bacanas ✨
 
 ---
 
-## Ferramentas utilizados
+O Apollo Server (no back) tem cacheamento nativo de todas as requisições.
+
+<br>
+
+O backend tem um arquivo chamado `populate.js`, que automaticamente gera ao menos, 10 registros dentro da base.
+
+<br>
+
+O frontend tem a possibilidade de editar, excluir e criar.
+
+<br>
+
+Todos os resolvers foram gerados pelo prisma, pela forte integração com o GraphQL
+
+<br>
+
+Temos testes unitários de grande parte das ações do usuário
+
+---
+
+## Ferramentas utilizadas 🔨
 
 Server:
 
@@ -81,6 +105,7 @@ Server:
 4. Prisma
 5. Faker
 6. Jest
+7. PostgresSQL
 
 Client:
 
