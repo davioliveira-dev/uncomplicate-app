@@ -1,0 +1,38 @@
+version: "3"
+services:
+  uncomplicate-app-client:
+    container_name: uncomplicate-app-client
+    build:
+      context: ./client
+    environment:
+      VITE_API_BASE_URL: http://uncomplicate-app-service:4000
+    depends_on:
+      - uncomplicate-app-service
+    links:
+      - uncomplicate-app-service
+    ports:
+      - 3000:3000
+
+  uncomplicate-app-service:
+    container_name: uncomplicate-app-service
+    build:
+      context: ./server
+    ports:
+      - 4000:4000
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/uncomplicate-app
+      PORT: 4000
+    depends_on:
+      - postgres
+    links:
+      - postgres
+
+  postgres:
+    container_name: postgres
+    restart: always
+    image: postgres:alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: uncomplicate_app
