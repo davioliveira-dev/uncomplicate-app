@@ -93,6 +93,12 @@ Todos os resolvers foram gerados pelo prisma, pela forte integração com o Grap
 
 Temos testes unitários de grande parte das ações do usuário
 
+<br>
+
+O frontend possui um tema e personalização altamente customizável, graças ao Stitches
+
+<br>
+
 ---
 
 ## Ferramentas utilizadas 🔨
